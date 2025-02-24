@@ -1,7 +1,6 @@
 package me.shivzee;
 
 import me.shivzee.callbacks.MessageFetchedCallback;
-import me.shivzee.util.JMailBuilder;
 import me.shivzee.util.Message;
 import me.shivzee.util.Response;
 
@@ -10,8 +9,13 @@ import java.util.List;
 
 public class MailTestModule {
 
-    public List<Message> fetchMails(String USERNAME, String PASSWORD) throws Exception {
-        JMailTM mailer = JMailBuilder.login(USERNAME, PASSWORD);
+    static JMailTM mailer;
+
+    public static void setJMailTm(JMailTM mailer) {
+        MailTestModule.mailer = mailer;
+    }
+
+    public List<Message> fetchMails() throws Exception {
         final List<Message> messages = new ArrayList<>();
         mailer.fetchMessages(new MessageFetchedCallback() {
             @Override

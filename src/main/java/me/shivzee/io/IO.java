@@ -63,6 +63,7 @@ public class IO {
             if(auth!=null){
                 request.addHeader("Authorization", "Bearer " + auth);
             }
+            System.out.println("Request Body : " + request.build().toString());
             okhttp3.Response response = client.newCall(request.build()).execute();
             return new Response(response.code() , Objects.requireNonNull(response.body()).string());
 

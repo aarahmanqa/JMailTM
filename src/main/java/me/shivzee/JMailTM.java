@@ -44,10 +44,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -61,8 +58,8 @@ import java.util.concurrent.Executors;
 public class JMailTM {
 
 
-    private String bearerToken;
-    private String id;
+    public String bearerToken;
+    public String id;
     private final Gson gson;
 
     private static final String baseUrl = Config.BASEURL;
@@ -327,9 +324,11 @@ public class JMailTM {
             }
         }
         catch (MessageFetchException e){
+            System.out.println("MessageFetchException for ID : " + id + " bearerToken : " + bearerToken);
             throw e;
         }
         catch (Exception e) {
+            System.out.println("Exception for ID : " + id + " bearerToken : " + bearerToken);
             throw new MessageFetchException(e.toString());
         }
     }
